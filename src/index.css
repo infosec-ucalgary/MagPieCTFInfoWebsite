@@ -1,47 +1,120 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --crt-background: #000;
-  --crt-text: #00ff00;
-  --crt-text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
-  --crt-before: repeating-linear-gradient(0deg, rgba(0, 255, 0, 0.1), rgba(0, 255, 0, 0.1) 1px, transparent 1px, transparent 2px);
-  --crt-after: radial-gradient(circle, transparent, rgba(0, 0, 0, 0.5));
-  --crt-font-size: 2em; /* Add this line */
-}
-
+@charset "UTF-8";
 body {
-  @apply m-0 flex items-center min-w-[320px] min-h-screen;
+  background:
+          radial-gradient(ellipse at top left, #6a1921, transparent 70%),
+          radial-gradient(ellipse at right 34% bottom 5%, #40b2c2, #000000 80%, #000000) left;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  color: #f5f4f6;
+  font: 1.3rem Inconsolata, monospace;
+  text-shadow: 0 0 5px #f5f4f6;
+  display: flex;
+  flex-direction: column;
+  font-size: 3rem;
 }
 
-body.crt {
-  background: var(--crt-background);
-  color: var(--crt-text);
-  font-family: 'Courier New', Courier, monospace;
-  text-shadow: var(--crt-text-shadow);
-  font-size: var(--crt-font-size);
-  position: relative;
-  overflow: hidden;
+body::after {
+  content: "";
+  position: absolute;
+  opacity: 0.3;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: repeating-linear-gradient(0deg, black, black 2px, transparent, transparent 4px);
+  pointer-events: none;
+}
+body::before {
+  content: "";
+  position: absolute;
+  z-index: 1000;
+  opacity: 0.4;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(ellipse at right 34% bottom 5%, transparent 60%, #000000);
+  pointer-events: none;
 }
 
-body.crt::before {
-  content: '';
-  @apply absolute top-0 left-0 w-full h-full;
-  background-image: var(--crt-before);
-  pointer-events: none;
-  z-index: 1;
+::-moz-selection {
+  background: #33202a;
+  text-shadow: none;
 }
 
-body.crt::after {
-  content: '';
-  @apply absolute top-0 left-0 w-full h-full;
-  background-image: var(--crt-after);
-  pointer-events: none;
-  z-index: 2;
+::selection {
+  background: #33202a;
+  text-shadow: none;
 }
+
+
+@-webkit-keyframes text-blink {
+  from, to {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8; /* Reduce the blink intensity */
+  }
+}
+
+@keyframes text-blink {
+  from, to {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8; /* Reduce the blink intensity */
+  }
+}
+
+@-webkit-keyframes blink {
+  from, to {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8; /* Reduce the blink intensity */
+  }
+}
+
+@keyframes blink {
+  from, to {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8; /* Reduce the blink intensity */
+  }
+}
+
+
+
+.wrapper {
+  padding: 10vh;
+  height: 100%;
+  width: 100%;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+pre {
+  white-space: pre-wrap;
+  margin: 0 0 80vh;
+  -webkit-animation: text-blink 0.01s steps(2) infinite;
+  animation: text-blink 0.01s steps(2) infinite;
+}
+
+
+
+  .image-container {
+    text-align: center;
+    margin: 0;
+    opacity: 0;
+    transition: opacity 5s ease-in-out;
+    padding: 0;
+  }
+
+
+
+

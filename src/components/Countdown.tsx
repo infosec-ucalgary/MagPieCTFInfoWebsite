@@ -1,10 +1,12 @@
+// src/components/Countdown.tsx
 import React, { useEffect, useState } from 'react';
 
 interface CountdownProps {
   targetDate: string;
+  className?: string; // Add className prop
 }
 
-const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
+const Countdown: React.FC<CountdownProps> = ({ targetDate, className }) => {
   const [countdown, setCountdown] = useState('');
 
   useEffect(() => {
@@ -29,7 +31,7 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
     return () => clearInterval(interval);
   }, [targetDate]);
 
-  return <div className="countdown">{countdown}</div>;
+  return <div className={className}>{countdown}</div>;
 };
 
 export default Countdown;
