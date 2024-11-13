@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --crt-background: #000;
+  --crt-text: #00ff00;
+  --crt-text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+  --crt-before: repeating-linear-gradient(0deg, rgba(0, 255, 0, 0.1), rgba(0, 255, 0, 0.1) 1px, transparent 1px, transparent 2px);
+  --crt-after: radial-gradient(circle, transparent, rgba(0, 0, 0, 0.5));
+  --crt-font-size: 2em; /* Add this line */
+}
+
+body {
+  @apply m-0 flex items-center min-w-[320px] min-h-screen;
+}
+
+body.crt {
+  background: var(--crt-background);
+  color: var(--crt-text);
+  font-family: 'Courier New', Courier, monospace;
+  text-shadow: var(--crt-text-shadow);
+  font-size: var(--crt-font-size);
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body.crt::before {
+  content: '';
+  @apply absolute top-0 left-0 w-full h-full;
+  background-image: var(--crt-before);
+  pointer-events: none;
+  z-index: 1;
+}
+
+body.crt::after {
+  content: '';
+  @apply absolute top-0 left-0 w-full h-full;
+  background-image: var(--crt-after);
+  pointer-events: none;
+  z-index: 2;
+}
