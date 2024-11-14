@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import GlitchedWriter from 'glitched-writer';
+import GlitchedWriter, { presets } from 'glitched-writer';
 import './App.css';
 import './index.css';
 import logo from './assets/logo.webp';
@@ -14,11 +14,10 @@ function App() {
 
     useEffect(() => {
         if (textRef.current) {
-            const writer = new GlitchedWriter(textRef.current, {
-                steps: [1, 8],
-            });
-            writer.write("SOMETHING IS HAPPENING SOON").then(() => {
-                setTimeout(() => setShowLogo(true), 1000);
+            const writer = new GlitchedWriter(textRef.current, presets.encrypted);
+            const phrases = ["SOMETHING IS HAPPENING SOON"];
+            writer.queueWrite(phrases, 1000, () => {
+                setTimeout(() => setShowLogo(true), 500);
             });
         }
     }, []);
@@ -31,9 +30,7 @@ function App() {
 
     useEffect(() => {
         if (showCountdown && countdownRef.current) {
-            const countdownWriter = new GlitchedWriter(countdownRef.current, {
-                steps: [1, 9],
-            });
+            const countdownWriter = new GlitchedWriter(countdownRef.current, presets.encrypted);
 
             const updateCountdown = () => {
                 const targetDate = new Date("2025-02-22T23:59:59").getTime();
@@ -67,6 +64,14 @@ function App() {
             return () => clearInterval(interval);
         }
     }, [showCountdown, initialWriteDone]);
+
+    useEffect(() => {
+        if (initialWriteDone) {
+            const writer = new GlitchedWriter(textRef.current, presets.encrypted);
+            const newPhrases = ["February 22, 2025"];
+            writer.queueWrite(newPhrases, 1100, false);
+        }
+    }, [initialWriteDone]);
 
     return (
         <div className="wrapper">
