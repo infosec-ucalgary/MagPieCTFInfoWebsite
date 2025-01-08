@@ -11,16 +11,22 @@ function App() {
     const [showCountdown, setShowCountdown] = useState(false);
     const [countdown, setCountdown] = useState('');
     const [initialWriteDone, setInitialWriteDone] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (textRef.current) {
+        setTimeout(() => setLoading(true), 200);
+    }, []);
+
+    useEffect(() => {
+        if (!loading && textRef.current) {
             const writer = new GlitchedWriter(textRef.current, presets.neo);
             const phrases = ["SOMETHING IS HAPPENING SOON"];
             writer.queueWrite(phrases, 1000, () => {
                 setTimeout(() => setShowLogo(true), 500);
             });
         }
-    }, []);
+    }, [loading]);
+    
 
     useEffect(() => {
         if (showLogo) {
@@ -75,6 +81,12 @@ function App() {
 
     return (
         <div className="wrapper">
+             {/* Spinner Element */}
+             {loading && (
+                <div className="spinner-container">
+                    <div className="spinner"></div>
+                </div>
+            )}
             <pre className="text-7xl">
                 <div ref={textRef}></div>
                 {showLogo && <div className="glitch"><img src={logo} className="logo" alt="logo" /></div>}
