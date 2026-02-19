@@ -9,6 +9,7 @@ export default {
       },
       fontFamily: {
         crt: ['Courier New', 'Courier', 'monospace'],
+        play: ['Play', 'sans-serif'],
       },
       textShadow: {
         crt: 'var(--crt-text-shadow)',
