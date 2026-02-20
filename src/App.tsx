@@ -1,4 +1,3 @@
-import logo from './assets/logo_alt.svg'
 import cybersecLogo from './assets/cybersecWordLogo.png'
 import magpieLogo from './assets/magpiectflogonotext.png'
 import textLogo from './assets/justtext.png'
