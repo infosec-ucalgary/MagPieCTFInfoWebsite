@@ -24,6 +24,13 @@ function App() {
             />
         </section>
 
+        {/* deets */}
+        <section className='flex flex-col text-center p-12 space-y-4'>
+            <h1 className='text-5xl'>February 21 - 22</h1>
+            <h1 className='text-5xl'>ICT 121</h1>
+            <h1 className='text-5xl'>2pm - 2pm</h1>
+        </section>
+
         {/* sponsors*/}
         <section className="p-12 pt-0 text-center flex flex-col items-center">
             <h1 className="text-7xl my-8">Brought to you by</h1>
